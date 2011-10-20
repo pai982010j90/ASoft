@@ -1,8 +1,13 @@
 package Clases;
 
 import java.util.Date;
+import java.util.*;
 
 public class Examen {
+
+    private String nombreModulo;
+    private Date fecha;
+    Collection<Calificacion> calificaciones;
 
     @Override
     public String toString() {
@@ -42,13 +47,18 @@ public class Examen {
     public String getNombreModulo() {
         return nombreModulo;
     }
-    private String nombreModulo;
-    private Date fecha;
-    
-    public Examen(String nombreModulo, Date fecha){
+
+    public Examen(String nombreModulo, Date fecha) {
         this.nombreModulo = nombreModulo;
         this.fecha = fecha;
+        calificaciones = new HashSet();
     }
     
+    public void agregaCalificacion(Calificacion calificacion){
+        calificaciones.add(calificacion);
+    }
     
+    public Collection obtenerCalificaciones(){
+        return calificaciones;
+    }
 }

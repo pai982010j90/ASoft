@@ -22,11 +22,11 @@ public class AcademiaSoft {
             Profesor profe1;
             profe1 = new Profesor(new DNI(12345678, 'z'), "Francisco", "Pérez");
 
-            Curso curso = new Curso("Programador de Aplicaciones Informáticas",
+            Curso cursoPAI = new Curso("Programador de Aplicaciones Informáticas",
                     new Date(2011, 2, 28), (short) 975, profe1);
 
-            System.out.println(curso);
-            System.out.println("Profesor:" + curso.getImpartidoPor());
+            System.out.println(cursoPAI);
+            System.out.println("Profesor:" + cursoPAI.getImpartidoPor());
 
 
             //Creamos alumnos
@@ -37,19 +37,22 @@ public class AcademiaSoft {
             Alumno alumno4 = new Alumno(new DNI(60000002, 'v'), "V", "Gálvez");
 
             // Matriculamos
-            curso.matricularAlumno(alumno1);
-            curso.matricularAlumno(alumno2);
-            curso.matricularAlumno(alumno3);
+            cursoPAI.matricularAlumno(alumno1);
+            cursoPAI.matricularAlumno(alumno2);
+            cursoPAI.matricularAlumno(alumno3);
 
-            System.out.println(curso.getImpartidoA().size());
-            System.out.println(curso.getImpartidoA());
+            System.out.println(cursoPAI.getImpartidoA().size());
+            System.out.println(cursoPAI.getImpartidoA());
 
-            curso.matricularAlumno(alumno4);
+            cursoPAI.matricularAlumno(alumno4);
             
             Examen examen1 = new Examen("HTML", new Date(2011,3,2));
-            curso.convocarExamen(examen1);
+            Examen examen2 = new Examen("CSS", new Date(2011,3,3));
+            cursoPAI.convocarExamen(examen1);
+            cursoPAI.convocarExamen(examen2);
             
-            System.out.println(curso.getImpartidoA().size());
+            
+            System.out.println(cursoPAI.getImpartidoA().size());
         } catch (DNINoValidoException ex) {
             Logger.getLogger(AcademiaSoft.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalArgumentException ex) {

@@ -4,6 +4,16 @@ import Util.DNI;
 
 public class Persona {
 
+    private final DNI dni;
+    private String nombre;
+    private String apellidos;
+
+    public Persona(DNI dni, String nombre, String apellidos) {
+        this.dni = dni;
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null || !(obj instanceof Persona)) {
@@ -24,22 +34,12 @@ public class Persona {
         return hash;
     }
 
-    private DNI dni;
-    private String nombre;
-    private String apellidos;
-
     /**
      * 
      * @param dni
      * @param nombre
      * @param apellidos
      */
-    public Persona(DNI dni, String nombre, String apellidos) {
-        this.dni = dni;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-    }
-
     public DNI getDni() {
         return this.dni;
     }
@@ -62,6 +62,6 @@ public class Persona {
 
     @Override
     public String toString() {
-        return "Persona{"+ "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + '}';
+        return "Persona{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + '}';
     }
 }
