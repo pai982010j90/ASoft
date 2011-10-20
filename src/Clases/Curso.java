@@ -12,6 +12,7 @@ public class Curso {
     private short duracion;
     private Profesor impartidoPor;
     private Collection<Alumno> impartidoA;
+    private Collection examenesConvocados;
 
     public String getNombre() {
         return this.nombre;
@@ -46,6 +47,7 @@ public class Curso {
         impartidoPor = profesor;
         
         impartidoA = new HashSet();
+        examenesConvocados = new HashSet();
     }
 
     @Override
@@ -72,5 +74,12 @@ public class Curso {
         public Profesor getImpartidoPor(){
             return impartidoPor;
         }
+        
+	public void convocarExamen(Examen examen) {
+		examenesConvocados.add(examen);
+	}
+	public Collection getExamenesConvocados() {
+		return examenesConvocados;
+	}         
         
 }

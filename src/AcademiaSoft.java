@@ -1,4 +1,5 @@
 import Clases.Curso;
+import Clases.Examen;
 import Humanos.Alumno;
 import Humanos.Profesor;
 import Util.DNI;
@@ -44,6 +45,10 @@ public class AcademiaSoft {
             System.out.println(curso.getImpartidoA());
 
             curso.matricularAlumno(alumno4);
+            
+            Examen examen1 = new Examen("HTML", new Date(2011,3,2));
+            curso.convocarExamen(examen1);
+            
             System.out.println(curso.getImpartidoA().size());
         } catch (DNINoValidoException ex) {
             Logger.getLogger(AcademiaSoft.class.getName()).log(Level.SEVERE, null, ex);
