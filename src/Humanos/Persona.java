@@ -67,16 +67,32 @@ public class Persona implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        // Verificion si puede comparar
-        if (o == null) {
+        // Verificacion si puede comparar
+        if (o == null || !(this.getClass().getName().equals(o.getClass().getName()))) {
+            //if (o == null || !(o instanceof Persona) ){
             throw new IllegalArgumentException();
         }
 
         Persona p = (Persona) o;
-        //return this.getDni().compareTo(p.getDni());
+        /* Si quisieras fijar como criterio de ordenacion natural el DNI, podemos
+         * aprovechar el metodo del "compareTo" de dicha clase, siempre que 
+         * lo hayamos definido previamente
+         *      return this.getDni().compareTo(p.getDni());
+         */
+
+        // El criterio de ordenacion natural elegido es: apellidos, nombre
         int comparaApellidos = this.getApellidos().compareTo(p.getApellidos());
-        if(comparaApellidos != 0) return comparaApellidos;
+        /*
+         * Comparación con esquema clasico if-else
+         * 
+         */
+
+        /*if (comparaApellidos != 0) {return comparaApellidos;}
         return this.getNombre().compareTo(p.getNombre());
-        
+         */
+
+        // Comparación con operador ternario
+        return comparaApellidos != 0 ? comparaApellidos
+                : this.getNombre().compareTo(p.getNombre());
     }
 }

@@ -16,13 +16,11 @@ public class Examen implements Comparable {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (obj == null || !(this.getClass().getName().equals(obj.getClass().getName()))) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Examen other = (Examen) obj;
+
+        Examen other = (Examen) obj;
         if ((this.nombreModulo == null) ? (other.nombreModulo != null) : !this.nombreModulo.equals(other.nombreModulo)) {
             return false;
         }
@@ -65,13 +63,17 @@ public class Examen implements Comparable {
 
     @Override
     public int compareTo(Object o) {
-        // Verificion si puede comparar
+        // Verificacion si puede comparar
         if (o == null || !(this.getClass().getName().equals(o.getClass().getName()))) {
             throw new IllegalArgumentException();
         }
 
-        Examen e = (Examen) o;
-        return fecha.compareTo(e.getFecha());
+        /* Podemos evitar lineas de codigo haciendo a la vez el down-casting y la
+         * comparacion
+         *    Examen e = (Examen) o;
+         *    return fecha.compareTo(e.getFecha());
+         */
 
+        return fecha.compareTo(((Examen)o).getFecha());
     }
 }

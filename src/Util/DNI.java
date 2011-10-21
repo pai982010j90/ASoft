@@ -119,9 +119,10 @@ public class DNI implements Comparable{
         return numero + "-" + letra;
     }
 
+    @Override
     public int compareTo(Object o) {
-        // Verifico si puede comparar
-        if (o == null || !(o instanceof DNI)) {
+        // Verifico si se puede comparar
+        if (o == null || !(this.getClass().getName().equals(o.getClass().getName()))) {
             throw new IllegalArgumentException();
         }
         
@@ -135,9 +136,6 @@ public class DNI implements Comparable{
         } else {
             return 1;
         }*/
-        
         return (numero < d.getNumero())?-1:1;
-
-
     }
 }

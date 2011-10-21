@@ -46,7 +46,11 @@ public class Curso {
         this.duracion = duracion;
         impartidoPor = profesor;
 
-        //impartidoA = new HashSet();
+        /* Cambiamos la instanciacion de HashSet --> TreeSet para que manejar a 
+         * a la coleccion como ordenada
+         * * impartidoA = new HashSet();
+         */
+
         impartidoA = new TreeSet();
         //examenesConvocados = new HashSet();
         examenesConvocados = new TreeSet();
@@ -89,6 +93,4 @@ public class Curso {
     public Collection getExamenesConvocados() {
         return examenesConvocados;
     }
-    
-    
 }

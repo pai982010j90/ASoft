@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Humanos;
 
 import java.util.Comparator;
@@ -20,12 +16,9 @@ public class CompDNIPersona implements Comparator {
         }
         Persona d1 = (Persona) o1;
         Persona d2 = (Persona) o2;
-
         return d1.getDni().compareTo(d2.getDni());
         /* Todo lo anterior se puede hacer en un solo paso como sigue
          * return ((Persona)o1).getDni().compareTo(((Persona)o2).getDni());
          */
-        
-
     }
 }
