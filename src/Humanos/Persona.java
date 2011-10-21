@@ -2,7 +2,7 @@ package Humanos;
 
 import Util.DNI;
 
-public class Persona {
+public class Persona implements Comparable {
 
     private final DNI dni;
     private String nombre;
@@ -63,5 +63,20 @@ public class Persona {
     @Override
     public String toString() {
         return "Persona{" + "dni=" + dni + ", nombre=" + nombre + ", apellidos=" + apellidos + '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        // Verificion si puede comparar
+        if (o == null) {
+            throw new IllegalArgumentException();
+        }
+
+        Persona p = (Persona) o;
+        //return this.getDni().compareTo(p.getDni());
+        int comparaApellidos = this.getApellidos().compareTo(p.getApellidos());
+        if(comparaApellidos != 0) return comparaApellidos;
+        return this.getNombre().compareTo(p.getNombre());
+        
     }
 }

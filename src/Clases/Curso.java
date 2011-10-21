@@ -45,9 +45,11 @@ public class Curso {
         this.fechaInicio = fechaInicio;
         this.duracion = duracion;
         impartidoPor = profesor;
-        
-        impartidoA = new HashSet();
-        examenesConvocados = new HashSet();
+
+        //impartidoA = new HashSet();
+        impartidoA = new TreeSet();
+        //examenesConvocados = new HashSet();
+        examenesConvocados = new TreeSet();
     }
 
     @Override
@@ -60,26 +62,33 @@ public class Curso {
                 + ", " + duracion + " horas";
     }
 
-	/**
-	 * 
-	 * @param alumno
-	 */
-	public void matricularAlumno(Alumno alumno) {
-		impartidoA.add(alumno);
-	}
-	public Collection getImpartidoA() {
-		return impartidoA;
-	}        
-        
-        public Profesor getImpartidoPor(){
-            return impartidoPor;
-        }
-        
-	public void convocarExamen(Examen examen) {
-		examenesConvocados.add(examen);
-	}
-	public Collection getExamenesConvocados() {
-		return examenesConvocados;
-	}         
-        
+    /**
+     * 
+     * @param alumno
+     */
+    public void matricularAlumno(Alumno alumno) {
+        impartidoA.add(alumno);
+    }
+
+    public Collection getImpartidoA() {
+        return impartidoA;
+    }
+
+    public Profesor getImpartidoPor() {
+        return impartidoPor;
+    }
+
+    public void setImpartidoPor(Profesor profesor) {
+        impartidoPor = profesor;
+    }
+
+    public void convocarExamen(Examen examen) {
+        examenesConvocados.add(examen);
+    }
+
+    public Collection getExamenesConvocados() {
+        return examenesConvocados;
+    }
+    
+    
 }

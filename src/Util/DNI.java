@@ -1,6 +1,6 @@
 package Util;
 
-public class DNI {
+public class DNI implements Comparable{
 
     @Override
     public boolean equals(Object obj) {
@@ -23,7 +23,7 @@ public class DNI {
         hash = 83 * hash + this.numero;
         return hash;
     }
-       private int numero;
+    private int numero;
     private char letra;
 
     public int getNumero() {
@@ -119,4 +119,25 @@ public class DNI {
         return numero + "-" + letra;
     }
 
+    public int compareTo(Object o) {
+        // Verifico si puede comparar
+        if (o == null || !(o instanceof DNI)) {
+            throw new IllegalArgumentException();
+        }
+        
+        DNI d = (DNI) o;
+        if (numero == d.getNumero()) {
+            return 0;
+        }
+/*
+        if (numero < d.getNumero()) {
+            return -1;
+        } else {
+            return 1;
+        }*/
+        
+        return (numero < d.getNumero())?-1:1;
+
+
+    }
 }

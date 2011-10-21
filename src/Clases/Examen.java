@@ -3,11 +3,11 @@ package Clases;
 import java.util.Date;
 import java.util.*;
 
-public class Examen {
+public class Examen implements Comparable {
 
     private String nombreModulo;
     private Date fecha;
-    Collection<Calificacion> calificaciones;
+    private Collection<Calificacion> calificaciones;
 
     @Override
     public String toString() {
@@ -51,14 +51,27 @@ public class Examen {
     public Examen(String nombreModulo, Date fecha) {
         this.nombreModulo = nombreModulo;
         this.fecha = fecha;
-        calificaciones = new HashSet();
+        //calificaciones = new HashSet();
+        calificaciones = new TreeSet();
     }
-    
-    public void agregaCalificacion(Calificacion calificacion){
+
+    public void agregaCalificacion(Calificacion calificacion) {
         calificaciones.add(calificacion);
     }
-    
-    public Collection obtenerCalificaciones(){
+
+    public Collection obtenerCalificaciones() {
         return calificaciones;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        // Verificion si puede comparar
+        if (o == null || !(this.getClass().getName().equals(o.getClass().getName()))) {
+            throw new IllegalArgumentException();
+        }
+
+        Examen e = (Examen) o;
+        return fecha.compareTo(e.getFecha());
+
     }
 }
