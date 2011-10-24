@@ -1,9 +1,10 @@
 package Clases;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.*;
 
-public class Examen implements Comparable {
+public class Examen implements Comparable, Serializable {
 
     private String nombreModulo;
     private Date fecha;

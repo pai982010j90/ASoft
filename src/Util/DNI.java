@@ -1,6 +1,8 @@
 package Util;
 
-public class DNI implements Comparable{
+import java.io.Serializable;
+
+public class DNI implements Comparable, Serializable{
 
     @Override
     public boolean equals(Object obj) {

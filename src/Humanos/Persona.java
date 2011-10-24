@@ -1,8 +1,9 @@
 package Humanos;
 
 import Util.DNI;
+import java.io.Serializable;
 
-public class Persona implements Comparable {
+public class Persona implements Comparable, Serializable {
 
     private final DNI dni;
     private String nombre;

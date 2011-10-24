@@ -1,10 +1,29 @@
 package Clases;
 
 import Humanos.*;
+import java.io.Serializable;
 
-public class Calificacion implements Comparable{
+public class Calificacion implements Comparable, Serializable {
 
-	private float nota;
+    private float nota;
+    private String comentario;
+    Alumno evaluado;
+
+    Examen seExamina;
+
+    /**
+     * 
+     * @param examen
+     * @param alumno
+     * @param nota
+     * @param comentario
+     */
+    public Calificacion(Examen examen, Alumno alumno, float nota, String comentario) {
+        seExamina = examen;
+        evaluado = alumno;
+        this.nota = nota;
+        this.comentario = comentario;
+    }
 
     public String getComentario() {
         return comentario;
@@ -21,23 +40,10 @@ public class Calificacion implements Comparable{
     public void setNota(float nota) {
         this.nota = nota;
     }
-	private String comentario;
-	Alumno evaluado;
-	Examen seExamina;
-
-	/**
-	 * 
-	 * @param examen
-	 * @param alumno
-	 * @param nota
-	 * @param comentario
-	 */
-	public Calificacion(Examen examen, Alumno alumno, float nota, String comentario) {
-		seExamina = examen;
-                evaluado = alumno;
-                this.nota = nota;
-                this.comentario = comentario;
-	}
+    
+    public Alumno getEvaluado() {
+        return evaluado;
+    }    
 
     @Override
     public int compareTo(Object o) {
@@ -47,8 +53,9 @@ public class Calificacion implements Comparable{
         }
 
         Calificacion c = (Calificacion) o;
-        if(nota==c.getNota()) return 0;
-        return nota<c.getNota()?-1:1;
-        
+        if (nota == c.getNota()) {
+            return 0;
+        }
+        return nota < c.getNota() ? -1 : 1;
     }
 }

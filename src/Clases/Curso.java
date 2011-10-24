@@ -4,14 +4,16 @@ import Humanos.Profesor;
 import java.util.Date;
 import java.util.*;
 import Humanos.*;
+import java.io.Serializable;
 
-public class Curso {
+public class Curso implements Serializable{
 
     private String nombre;
     private Date fechaInicio;
     private short duracion;
     private Profesor impartidoPor;
-    private Collection<Alumno> impartidoA;
+    //private Collection impartidoA;
+    private Map impartidoA;
     private Collection examenesConvocados;
 
     public String getNombre() {
@@ -51,9 +53,11 @@ public class Curso {
          * * impartidoA = new HashSet();
          */
 
-        impartidoA = new TreeSet();
+        //impartidoA = new TreeSet();
+        impartidoA = new HashMap();
         //examenesConvocados = new HashSet();
-        examenesConvocados = new TreeSet();
+        //examenesConvocados = new TreeSet();
+        examenesConvocados = new ArrayList();
     }
 
     @Override
@@ -71,10 +75,11 @@ public class Curso {
      * @param alumno
      */
     public void matricularAlumno(Alumno alumno) {
-        impartidoA.add(alumno);
+        //impartidoA.add(alumno);
+        impartidoA.put(alumno.getDni().getNumero(), alumno);
     }
 
-    public Collection getImpartidoA() {
+    public Map getImpartidoA() {
         return impartidoA;
     }
 
@@ -93,4 +98,5 @@ public class Curso {
     public Collection getExamenesConvocados() {
         return examenesConvocados;
     }
+    
 }
