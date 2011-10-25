@@ -5,16 +5,29 @@ import java.io.*;
 
 public class Menu {
 
-    Map<String, String> opciones;
+    private Map<String, String> items;
+
+    public Map<String, String> getItems() {
+        return items;
+    }
+
+    public Map<String, String> getOpciones() {
+        return items;
+    }
+
+    public void setItems(Map<String, String> items) {
+        this.items = items;
+    }
 
     public Menu() {
-        opciones = new TreeMap<String, String>();
-        opciones.put("0", "Salir");
-        opciones.put("1", "Mostrar Todo");
-        opciones.put("2", "Serializar Curso");
-        opciones.put("3", "Deserializar Curso");
-        opciones.put("4", "Inicializacion interna");
-        opciones.put("5", "Mostrar Alumno");
+        items = new TreeMap<String, String>();
+        items.put("0", "Salir");
+        items.put("1", "Mostrar Todo");
+        items.put("2", "Serializar Curso");
+        items.put("3", "Deserializar Curso");
+        items.put("4", "Inicializacion interna");
+        items.put("5", "Mostrar Alumno");
+        items.put("6", "Matricular Alumno");
     }
 
     public int getOpcion() {
@@ -25,7 +38,7 @@ public class Menu {
             BufferedReader br = new BufferedReader(isr);
             do {
                 opcion = br.readLine();
-                if(opcion != null && !(opciones.containsKey(opcion))){
+                if(opcion != null && !(items.containsKey(opcion))){
                     System.out.print("Opción Incorrecta... ");
                     mostrarSelectorOpcion();
                     pedirOpcion = true;
@@ -39,20 +52,20 @@ public class Menu {
         return new Integer(opcion).intValue();
     }
 
-    public void mostrarOpciones() {
+    public void mostrarItems() {
         System.out.println("M E N U");
-        Set<String> itemOpcion = opciones.keySet();
+        Set<String> itemOpcion = items.keySet();
 
         for (String clave : itemOpcion) {
-            System.out.println(clave + " - " + opciones.get(clave));
+            System.out.println(clave + " - " + items.get(clave));
         }
 
     }
 
     public void mostrarSelectorOpcion() {
 
-        //Set<String> itemOpciones = opciones.keySet();
-        TreeSet<String> itemOpciones = new TreeSet(opciones.keySet());
+        //Set<String> itemOpciones = items.keySet();
+        TreeSet<String> itemOpciones = new TreeSet(items.keySet());
         String cadOpciones = "";
         for (String itemOpcion : itemOpciones) {
             cadOpciones += itemOpcion;

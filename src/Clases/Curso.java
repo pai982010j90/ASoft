@@ -4,17 +4,21 @@ import Humanos.Profesor;
 import java.util.Date;
 import java.util.*;
 import Humanos.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public class Curso implements Serializable{
+public class Curso implements Serializable {
 
     private String nombre;
     private Date fechaInicio;
     private short duracion;
     private Profesor impartidoPor;
     //private Collection impartidoA;
-    private Map impartidoA;
-    private Collection examenesConvocados;
+    private Map<Integer, Alumno> impartidoA;
+    private Collection<Examen> examenesConvocados;
 
     public String getNombre() {
         return this.nombre;
@@ -54,10 +58,10 @@ public class Curso implements Serializable{
          */
 
         //impartidoA = new TreeSet();
-        impartidoA = new HashMap();
+        impartidoA = new HashMap<Integer, Alumno>();
         //examenesConvocados = new HashSet();
         //examenesConvocados = new TreeSet();
-        examenesConvocados = new ArrayList();
+        examenesConvocados = new ArrayList<Examen>();
     }
 
     @Override
@@ -79,7 +83,7 @@ public class Curso implements Serializable{
         impartidoA.put(alumno.getDni().getNumero(), alumno);
     }
 
-    public Map getImpartidoA() {
+    public Map<Integer, Alumno> getImpartidoA() {
         return impartidoA;
     }
 
@@ -98,5 +102,26 @@ public class Curso implements Serializable{
     public Collection getExamenesConvocados() {
         return examenesConvocados;
     }
-    
+
+    public Curso getCurso() {
+        return this;
+    }
+
+    public static void serializarCurso(Curso curso) throws Exception {
+        FileOutputStream fos = new FileOutputStream("asoft.ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(curso);
+        oos.close();
+    }
+
+    public static Curso deSerializarCurso() throws Exception {
+        Curso curso = null;
+
+        FileInputStream fis = new FileInputStream("asoft.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        curso = (Curso) ois.readObject();
+        ois.close();
+
+        return curso;
+    }
 }

@@ -7,6 +7,10 @@ public class Profesor extends Persona {
 
     private Curso imparte;
 
+    public Profesor(Persona p) {
+        super(p);
+    }
+
     /**
      * 
      * @param dni
@@ -27,6 +31,6 @@ public class Profesor extends Persona {
 
     @Override
     public String toString() {
-        return "Profesor{"+super.toString()+"}";
+        return "Profesor{" + super.toString() + "}";
     }
 }

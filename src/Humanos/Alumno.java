@@ -4,10 +4,14 @@ import Util.DNI;
 import Clases.*;
 import java.util.*;
 
-public class Alumno extends Persona{
+public class Alumno extends Persona {
 
     private Curso cursa;
     Collection<Calificacion> calificaciones;
+
+    public Alumno(Persona p) {
+        super(p);
+    }
 
     public Alumno(DNI dni, String nombre, String apellidos) {
         super(dni, nombre, apellidos);
@@ -34,16 +38,16 @@ public class Alumno extends Persona{
     public Collection obtenerCalificaciones() {
         return calificaciones;
     }
-/*
+    /*
     @Override
     public int compareTo(Object o) {
-        // Verifico si puede comparar
-        if (o == null) {
-            throw new IllegalArgumentException();
-        }
-
-        Alumno p = (Alumno) o;
-        return this.getDni().compareTo(p.getDni());
+    // Verifico si puede comparar
+    if (o == null) {
+    throw new IllegalArgumentException();
+    }
+    
+    Alumno p = (Alumno) o;
+    return this.getDni().compareTo(p.getDni());
     }
      * 
      */

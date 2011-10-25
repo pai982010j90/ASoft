@@ -7,15 +7,15 @@ import UI.*;
 import java.io.*;
 
 public class AcademiaSoft2 {
-    
+
     public static void main(String[] args) throws Exception {
         Curso cursoPAI = inicializaDatosPrueba();
         CursoVista cursoVista = new CursoVista(cursoPAI);
         int opcion = -1;
-        
+
         Menu menu = new Menu();
         do {
-            menu.mostrarOpciones();
+            menu.mostrarItems();
             menu.mostrarSelectorOpcion();
             opcion = menu.getOpcion();
             switch (opcion) {
@@ -31,36 +31,41 @@ public class AcademiaSoft2 {
                 case 4:
                     cursoPAI = inicializaDatosPrueba();
                     break;
-                
+
                 case 5:
-                    System.out.println("Que alumno busca?");
-                    try {
-                        // Para leer desde teclado
-                        InputStreamReader isr = new InputStreamReader(System.in);
-                        BufferedReader br = new BufferedReader(isr);
-                        String strDNI = br.readLine();
-                        
-                        cursoVista.mostrarAlumno(Integer.parseInt(strDNI));
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    DialogoCampoVista dcv = new DialogoCampoVista("Que alumno busca?", "DNI - Alumno: ");
+                    int numDNIAlumno = Integer.parseInt(dcv.ejecutaVista());
+                    Alumno alumno = cursoPAI.getImpartidoA().get(numDNIAlumno);
+                    if (alumno != null) {
+                        System.out.println(alumno.getNombre());
+                    } else {
+                        System.out.println("No existe el alumno con DNI:" + numDNIAlumno);
                     }
+
                     break;
-                
-                
+
+                case 6:
+                    AltaPersonaVista avp = new AltaPersonaVista("Alta de Persona", "Alumno");
+                    Persona p = new Alumno(avp.ejecutaVista());
+                    cursoPAI.matricularAlumno((Alumno) p);
+
+                    break;
+
+
                 default:
                     assert false : "Opcion de menu no controlada";
             }
         } while (opcion > 0);
-        
-        
-        
-        
-        
+
+
+
+
+
     }
-    
+
     public static Curso inicializaDatosPrueba() throws Exception {
         Profesor profe1 = new Profesor(new DNI(12345678, 'z'), "Francisco", "Pérez");
-        
+
         Curso cursoPAI = new Curso("Programador de Aplicaciones Informáticas",
                 new Date(2011, 2, 28), (short) 975, profe1);
 
@@ -77,37 +82,37 @@ public class AcademiaSoft2 {
         cursoPAI.matricularAlumno(alumno2);
         cursoPAI.matricularAlumno(alumno3);
         cursoPAI.matricularAlumno(alumno31);
-        
+
         Examen examenPAI1 = new Examen("HTML", new Date(2011, 3, 2));
         Examen examenPAI2 = new Examen("CSS", new Date(2011, 3, 3));
         cursoPAI.convocarExamen(examenPAI1);
         cursoPAI.convocarExamen(examenPAI2);
-        
+
         Calificacion cPAI1HTMLa1 = new Calificacion(examenPAI1, alumno1, 10, "Perfecto");
         Calificacion cPAI1HTMLa2 = new Calificacion(examenPAI1, alumno2, 9, "Muy bien, pero se que puede hacerlo mejor");
         Calificacion cPAI1HTMLa3 = new Calificacion(examenPAI1, alumno3, 7.5f, "Puede hacerlo mucho mejor");
         examenPAI1.agregaCalificacion(cPAI1HTMLa1);
         examenPAI1.agregaCalificacion(cPAI1HTMLa2);
         examenPAI1.agregaCalificacion(cPAI1HTMLa2);
-        
+
         return cursoPAI;
     }
-    
+
     public static void serializarCurso(Curso curso) throws Exception {
         FileOutputStream fos = new FileOutputStream("asoft.ser");
         ObjectOutputStream oos = new ObjectOutputStream(fos);
         oos.writeObject(curso);
         oos.close();
     }
-    
+
     public static Curso deSerializarCurso() throws Exception {
         Curso curso = null;
-        
+
         FileInputStream fis = new FileInputStream("asoft.ser");
         ObjectInputStream ois = new ObjectInputStream(fis);
         curso = (Curso) ois.readObject();
         ois.close();
-        
+
         return curso;
     }
 }

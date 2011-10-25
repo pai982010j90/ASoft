@@ -9,8 +9,18 @@ public class Persona implements Comparable, Serializable {
     private String nombre;
     private String apellidos;
 
-    public Persona(DNI dni, String nombre, String apellidos) {
+    public Persona(Persona p) {
+        this.dni = p.getDni();
+        this.nombre = p.getNombre();
+        this.apellidos = p.getApellidos();
+    }
+
+    public Persona(DNI dni) {
         this.dni = dni;
+    }
+
+    public Persona(DNI dni, String nombre, String apellidos) {
+        this(dni);
         this.nombre = nombre;
         this.apellidos = apellidos;
     }

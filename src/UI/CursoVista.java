@@ -25,8 +25,9 @@ public class CursoVista {
     }
 
     public void mostrarAlumno(int dni) {
-       // Alumno alumno = (Alumno) curso.getImpartidoA().get(dni);
-         Alumno alumno = (Alumno) curso.getImpartidoA().get(dni);
+         //Alumno alumno = (Alumno) curso.getImpartidoA().get(dni);
+         Alumno alumno = curso.getImpartidoA().get(dni);
+         
         if (alumno != null) {
             System.out.println("(" + alumno.getDni() + ") - " + alumno.getApellidos() + ", " + alumno.getNombre());
         } else {
